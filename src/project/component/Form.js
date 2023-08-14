@@ -34,44 +34,46 @@ function Form() {
     }
     return (
         <>
-        <h1 className='bg-primary p-4 text-center text-white'>Form Handle With Radio Button</h1>
+            <h1 className='bg-primary p-4 text-center text-white'>Form Handle With Radio Button</h1>
 
-            <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{margin:"0 auto"}}>
+            <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{ margin: "0 auto" }}>
                 <form onSubmit={handleSubmit}>
                     <div className='d-flex  justify-content-around'>
                         <div className='form-group'>
-                            <label >
-                                First Name<br />
-                                <input value={input.fname} name='fname' onChange={handleChange} className='form-control' />
-                            </label>
+                            <label htmlFor='fname'> First Name</label>
+
+                            <input id='fname' value={input.fname} name='fname' onChange={handleChange} className='form-control' required />
+
                         </div>
                         <div className='form-group mx-5'>
                             <label >
                                 Last Name<br />
-                                <input name='lname' value={input.lname} onChange={handleChange} className='form-control' />
+                                <input name='lname' value={input.lname} onChange={handleChange} className='form-control' required />
                             </label>
                         </div>
                     </div>
                     <div className='d-flex justify-content-around my-4'>
-                        <div name="contact">
-                            <div > <label> How should we contact you ?</label></div>
-                            <label htmlFor="phone">Phone</label>
-                            <input type="radio" name="contact" id="phone" value="phone" onClick={handleChange} />
-                            <br />
-                            <label htmlFor="email">Email</label>
-                            <input type="radio" name="contact" id="email" value="email" onClick={handleChange} />
-                            <br />
+                        <div name="contact" className='col-sm-4'>
+                            <div > <label> How should contact you ?</label></div>
+                            <div className='form-check'>
+                                <label htmlFor="phone">Phone</label>
+                                <input className="form-check-input" type="radio" name="contact" id="phone" value="phone" onClick={handleChange} required />
+                            </div>
+                            <div className='form-check'>
+                                <label htmlFor="email">Email</label>
+                                <input className="form-check-input" type="radio" name="contact" id="email" value="email" onClick={handleChange} required />
+                            </div>
 
                         </div>
-                        <div>
+                        <div className='col-sm-6'>
                             {input.contact === "phone" &&
                                 <div className='form-group mx-5'>    <label>
                                     Phone<br />
-                                    <input className='form-control' value={input.phone} name='phone' onChange={handleChange} />
+                                    <input type="number"  className='form-control' value={input.phone} name='phone' onChange={handleChange} required />
                                 </label></div> || input.contact === "email" &&
                                 <div className='form-group mx-5'><label>
                                     Email<br />
-                                    <input className='form-control' value={input.email} name='email' onChange={handleChange} />
+                                    <input  type="email" className='form-control' value={input.email} name='email' onChange={handleChange} required />
                                 </label></div>
                             }
                         </div>
@@ -83,16 +85,16 @@ function Form() {
             </div>
 
 
-           <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{margin:"0 auto"}}>
-           {data?.map((user) => {
-                return <div>
-                    <span>{user.fname} </span>
-                    <span>{user.lname} </span>:
-                    <span>{user.phone} </span>
-                    <span>{user.email} </span>
-                </div>
-            })}
-           </div>
+            <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{ margin: "0 auto" }}>
+                {data?.map((user) => {
+                    return <div>
+                        <span>{user.fname} </span>
+                        <span>{user.lname} </span>:
+                        <span>{user.phone} </span>
+                        <span>{user.email} </span>
+                    </div>
+                })}
+            </div>
         </>
     )
 }

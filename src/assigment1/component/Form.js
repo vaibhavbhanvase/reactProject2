@@ -25,6 +25,8 @@ export function Form() {
         e.preventDefault()
         // console.log(input);
         dispatch(form1Submit(input))
+
+
         setInput({
             fname: "",
             lname: "",
@@ -37,27 +39,26 @@ export function Form() {
     console.log(data);
     return (
         <>
-        <h1 className='bg-primary p-4 text-center text-white'>Form Handle With Dropdown</h1>
+            <h1 className='bg-primary p-4 text-center text-white'>Form Handle With Dropdown</h1>
             <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{ margin: "0 auto" }}>
                 <form onSubmit={handleSubmit}>
                     <div className='d-flex  justify-content-around'>
                         <div className='form-group'>
-                            <label className='mx-5'>
-                                First Name<br />
-                                <input value={input.fname} name='fname' onChange={handleChange} className='form-control' />
-                            </label>
+                            <label htmlFor='fname'>First Name</label>
+                            <input id='fname' value={input.fname} name='fname' onChange={handleChange} className='form-control' required />
+
                         </div>
                         <div className='form-group'>
-                            <label className='mx-3'>
-                                Last Name<br />
-                                <input name='lname' value={input.lname} onChange={handleChange} className='form-control' />
-                            </label>
+                            <label htmlFor='lname'>Last Name</label>
+                                
+                                <input id='lname' name='lname' value={input.lname} onChange={handleChange} className='form-control' required />
+                            
                         </div>
                     </div>
                     <div className='d-flex my-4 justify-content-around'>
-                        <div className='mx-5 form-group'>
-                            <div > <label> How should we contact you ?</label></div>
-                            <select name='contact' onClick={handleChange} className='p-1 px-4 form-group'>
+                        <div className=' form-group col-sm-4'>
+                            <div > <label htmlFor='contact'> How should contact you?</label></div>
+                            <select id='contact' name='contact' onClick={handleChange} className='p-1 px-5 form-group' required>
                                 <option>
                                     Choose option
                                 </option>
@@ -70,16 +71,15 @@ export function Form() {
                             </select>
 
                         </div>
-                        <div>
+                        <div className='col-sm-4'>
                             {input.contact === "phone" &&
-                               <div className='form-group'> <label>
-                               Phone<br />
-                               <input value={input.phone} name='phone' onChange={handleChange} className='form-control' />
-                           </label></div> || input.contact === "email" &&
-                               <div className='form-group'> <label>
-                                    Email<br />
-                                    <input value={input.email} name='email' onChange={handleChange} className='form-control' />
-                                </label>
+                                <div className='form-group col-sm-12'> <label htmlFor='phone'>Phone</label>
+                                    <input type="number" id='phone' value={input.phone} name='phone' onChange={handleChange} className='form-control' required />
+                                </div> || input.contact === "email" &&
+                                <div className='form-group'> <label htmlFor='email'>Email</label>
+                                    
+                                    <input id='email' type="email" value={input.email} name='email' onChange={handleChange} className='form-control' required />
+                                
                                 </div>
                             }
                         </div>
@@ -90,16 +90,16 @@ export function Form() {
                 </form>
             </div>
 
-            <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{margin:"0 auto"}}>
-           {data?.map((user) => {
-                return <div>
-                    <span>{user.fname} </span>
-                    <span>{user.lname} </span>:
-                    <span>{user.phone} </span>
-                    <span>{user.email} </span>
-                </div>
-            })}
-           </div>
+            <div className=' col-6 shadow p-3 mb-5 bg-white rounded mt-5' style={{ margin: "0 auto" }}>
+                {data?.map((user) => {
+                    return <div>
+                        <span>{user.fname} </span>
+                        <span>{user.lname} </span>:
+                        <span>{user.phone} </span>
+                        <span>{user.email} </span>
+                    </div>
+                })}
+            </div>
         </>
     )
 }
